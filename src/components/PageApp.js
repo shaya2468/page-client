@@ -22,7 +22,7 @@ var StatesField = createClass({
 	},
 	getInitialState () {
 		return {
-			country: 'US',
+			country: 'AU',
 			disabled: false,
 			searchable: this.props.searchable,
 			selectValue: 'new-south-wales',
@@ -54,7 +54,7 @@ var StatesField = createClass({
 		return (
 			<div className="section">
 				<h3 className="section-heading">{this.props.label}</h3>
-				<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={options} simpleValue clearable={this.state.clearable} name="selected-state" disabled={this.state.disabled} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
+				<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={options} clearable={this.state.clearable} name="selected-state" disabled={this.state.disabled} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
 				<Results />
 				
 			</div>
