@@ -1,5 +1,11 @@
 
-exports.Users = [
+exports.users = [
+    { value: 'eric', label: 'Eric Cartman' },
+    { value: 'kyle', label: 'Kyle Bron' },
+    { value: 'simcha', label: 'Simcha Ajzner' },
+]
+
+exports.sites = [
     { value: 'eric', label: 'Eric Cartman' },
     { value: 'kyle', label: 'Kyle Bron' },
     { value: 'simcha', label: 'Simcha Ajzner' },

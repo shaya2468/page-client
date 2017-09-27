@@ -49,3 +49,11 @@ tr > td:first-child, tr > th:first-child{
  .fetching-data{
     font-size: 3rem;
  }
+
+ .checkbox-list{
+    display: flex;
+    justify-content: space-around;
+    width: 14rem;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+ }

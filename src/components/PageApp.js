@@ -5,6 +5,7 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
 import Results from './Results';
+import CheckType from './CheckType';
 
 const STATES = require('../data/states');
 
@@ -22,20 +23,21 @@ var StatesField = createClass({
 	},
 	getInitialState () {
 		return {
-			country: 'Users',
+			entriesType: 'users',
 			fetching: false,
 			searchable: this.props.searchable,
-			selectValue: 'new-south-wales',
+			selectValue: null,
 			clearable: true,
 			entries:[]
 		};
 	},
-	switchCountry (e) {
-		var newCountry = e.target.value;
-		console.log('Country changed to ' + newCountry);
+	switchEntryType (e) {
+		var newType = e.target.value;
+		console.log('new type is ' + newType);
 		this.setState({
-			country: newCountry,
+			entriesType: newType,
 			selectValue: null,
+			entries: []
 		});
 	},
 	updateValue (newValue) {
@@ -62,10 +64,13 @@ var StatesField = createClass({
 		console.log(e.value)
 	},
 	render () {
-		var options = STATES[this.state.country];
+		var options = STATES[this.state.entriesType];
 		return (
 			<div className="section">
 				<h3 className="section-heading">{this.props.label}</h3>
+
+				<CheckType checked={this.state.entriesType} switchEntryType={this.switchEntryType} fetching={this.state.fetching}/>
+				
 				<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={options} clearable={this.state.clearable} name="selected-state" disabled={this.state.fetching} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
 				<Results fetching={this.state.fetching} entries={this.state.entries}/>
 				
