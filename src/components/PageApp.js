@@ -40,10 +40,15 @@ var StatesField = createClass({
 	},
 	updateValue (newValue) {
 		console.log('State changed to ' + JSON.stringify(newValue));
-		this.setState({
-			selectValue: newValue,
-			entries: STATES[newValue.value]
-		});
+
+		var fakeApi = STATES[newValue.value];
+
+		fakeApi.then((result) => {
+			this.setState({
+				selectValue: newValue,
+				entries: result
+			});
+		})
 	},
 	focusStateSelect () {
 		this.refs.stateSelect.focus();

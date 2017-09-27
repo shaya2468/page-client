@@ -1,30 +1,33 @@
 
-
-
-
-
 exports.Users = [
     { value: 'eric', label: 'Eric Cartman' },
     { value: 'kyle', label: 'Kyle Bron' },
     { value: 'simcha', label: 'Simcha Ajzner' },
 ]
 
-exports.eric = [
-    {"user_name":"eric","site_name":"ynet","time":666333,"referrer":"google","id":"59ca18e1def80322e95d52e5"},
-    {"user_name":"eric","site_name":"bbc","time":666333,"referrer":"google","id":"59ca1978abeb2823508b0143"}
-]
+exports.eric = new Promise(function(resolve, reject) {
+    resolve([
+        {"user_name":"eric","site_name":"ynet","time":666333,"referrer":"google","id":"59ca18e1def80322e95d52e5"},
+        {"user_name":"eric","site_name":"bbc","time":666333,"referrer":"google","id":"59ca1978abeb2823508b0143"}
+    ]);
 
-exports.kyle = [
-    {"user_name":"kyle","site_name":"walla","time":666333,"referrer":"google","id":"59ca19f299ff8023b9c72a81"}
-]
+  });
 
-exports.simcha = [
-    {"user_name":"simcha","site_name":"walla","time":666333,"referrer":"google","id":"59ca19f299ff8023b9c72a81"},
-    {"user_name":"simcha","site_name":"nrg","time":666333,"referrer":"google","id":"59ca19f299ff8023b9c72a81"},
-    {"user_name":"simcha","site_name":"nba.com","time":666333,"referrer":"google","id":"59ca19f299ff8023b9c72a81"},
-]
+  exports.kyle = new Promise(function(resolve, reject) {
+    resolve([
+        {"user_name":"kyle","site_name":"walla","time":666333,"referrer":"google","id":"59ca19f299ff8023b9c72a81"}
+    ]);
 
+  });
 
+  exports.simcha = new Promise(function(resolve, reject) {
+    resolve([
+        {"user_name":"simcha","site_name":"walla","time":666333,"referrer":"google","id":"59ca19f299ff8023b9c72a81"},
+        {"user_name":"simcha","site_name":"nrg","time":666333,"referrer":"google","id":"59ca19f299ff8023b9c72a81"},
+        {"user_name":"simcha","site_name":"nba.com","time":666333,"referrer":"google","id":"59ca19f299ff8023b9c72a81"},
+    ]);
+
+  });
 
 
 

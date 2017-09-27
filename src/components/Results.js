@@ -14,6 +14,7 @@ const Results = (props) => (
       {
         props.entries.map((entry, index) => (
           <Entry
+            key = {index}
             time={entry.time}
             info={entry.site_name}
             referrer={entry.referrer}
