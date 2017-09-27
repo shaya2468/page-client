@@ -23,7 +23,7 @@ var StatesField = createClass({
 	getInitialState () {
 		return {
 			country: 'Users',
-			disabled: false,
+			fetching: false,
 			searchable: this.props.searchable,
 			selectValue: 'new-south-wales',
 			clearable: true,
@@ -45,13 +45,13 @@ var StatesField = createClass({
 
 		this.setState({
 			selectValue: newValue,
-			disabled:true
+			fetching:true
 		});
 
 		fakeApi.then((result) => {
 			this.setState({
 				entries: result,
-				disabled:false
+				fetching:false
 			});
 		})
 	},
@@ -66,8 +66,8 @@ var StatesField = createClass({
 		return (
 			<div className="section">
 				<h3 className="section-heading">{this.props.label}</h3>
-				<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={options} clearable={this.state.clearable} name="selected-state" disabled={this.state.disabled} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
-				<Results entries={this.state.entries}/>
+				<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={options} clearable={this.state.clearable} name="selected-state" disabled={this.state.fetching} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
+				<Results fetching={this.state.fetching} entries={this.state.entries}/>
 				
 			</div>
 		);

@@ -12,16 +12,23 @@ const Results = (props) => (
       </tr>
 
       {
-        props.entries.map((entry, index) => (
-          <Entry
-            key = {index}
-            time={entry.time}
-            info={entry.site_name}
-            referrer={entry.referrer}
-          />
-        ))
+        !props.fetching &&
+
+          props.entries.map((entry, index) => (
+            <Entry
+              key = {index}
+              time={entry.time}
+              info={entry.site_name}
+              referrer={entry.referrer}
+            />
+          ))
       }
     </table>
+    {
+      props.fetching &&
+
+        <p className="fetching-data">Fetching data please wait...</p>
+    }
   </div>
 );
 
