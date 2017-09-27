@@ -41,11 +41,14 @@ var StatesField = createClass({
 	updateValue (newValue) {
 		console.log('State changed to ' + JSON.stringify(newValue));
 
-		var fakeApi = STATES[newValue.value];
+		var fakeApi = STATES[newValue.value]();
+
+		this.setState({
+			selectValue: newValue
+		});
 
 		fakeApi.then((result) => {
 			this.setState({
-				selectValue: newValue,
 				entries: result
 			});
 		})
