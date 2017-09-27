@@ -16,17 +16,18 @@ var StatesField = createClass({
 	},
 	getDefaultProps () {
 		return {
-			label: 'States:',
+			label: ' ',
 			searchable: true,
 		};
 	},
 	getInitialState () {
 		return {
-			country: 'AU',
+			country: 'Users',
 			disabled: false,
 			searchable: this.props.searchable,
 			selectValue: 'new-south-wales',
 			clearable: true,
+			entries:[]
 		};
 	},
 	switchCountry (e) {
@@ -38,16 +39,17 @@ var StatesField = createClass({
 		});
 	},
 	updateValue (newValue) {
-		console.log('State changed to ' + newValue);
+		console.log('State changed to ' + JSON.stringify(newValue));
 		this.setState({
 			selectValue: newValue,
+			entries: STATES[newValue.value]
 		});
 	},
 	focusStateSelect () {
 		this.refs.stateSelect.focus();
 	},
 	itemClicked (e) {
-		console.log('itemClicked')
+		console.log(e.value)
 	},
 	render () {
 		var options = STATES[this.state.country];
@@ -55,7 +57,7 @@ var StatesField = createClass({
 			<div className="section">
 				<h3 className="section-heading">{this.props.label}</h3>
 				<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={options} clearable={this.state.clearable} name="selected-state" disabled={this.state.disabled} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
-				<Results />
+				<Results entries={this.state.entries}/>
 				
 			</div>
 		);

@@ -4,26 +4,22 @@ import Entry from './Entry';
 
 const Results = (props) => (
   <div className="results-title">
-    <p>Your results are:</p>
     <table>
-
       <tr>
-        <th>Company</th>
-        <th>Contact</th>
-        <th>Country</th>
+        <th>Time</th>
+        <th>Site</th>
+        <th>Referrer</th>
       </tr>
-      <Entry
-        optionText={'bbbbb'}
-        count={3 + 1}
-      />
-      <Entry
-        optionText={'bbbbb'}
-        count={3 + 1}
-      />
-      <Entry
-      optionText={'bbbbb'}
-      count={3 + 1}
-    />
+
+      {
+        props.entries.map((entry, index) => (
+          <Entry
+            time={entry.time}
+            info={entry.site_name}
+            referrer={entry.referrer}
+          />
+        ))
+      }
     </table>
   </div>
 );
