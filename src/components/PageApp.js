@@ -44,12 +44,14 @@ var StatesField = createClass({
 		var fakeApi = STATES[newValue.value]();
 
 		this.setState({
-			selectValue: newValue
+			selectValue: newValue,
+			disabled:true
 		});
 
 		fakeApi.then((result) => {
 			this.setState({
-				entries: result
+				entries: result,
+				disabled:false
 			});
 		})
 	},
