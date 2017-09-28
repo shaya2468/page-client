@@ -74,10 +74,6 @@ class StatesField extends React.Component {
 			})
 	};
 	
-	focusStateSelect = () => {
-		this.refs.stateSelect.focus();
-	};
-	
 	itemClicked = (e) => {
 		// for now just log the value
 		console.log(e.value)
