@@ -17,15 +17,19 @@ class StatesField extends React.Component{
 		searchable: this.props.searchable,
 		selectValue: null,
 		clearable: true,
-		entries:[]
+		entries:[],
+		users:[],
+		sites:[]
 	  };
 
 	componentDidMount = () => {
 		Api.init()
-		.then((users) => {
-			console.log(users.data);
+		.then((initData) => {
+			initData = initData.data;
 			this.setState({
-				loadingInit:false
+				loadingInit: false,
+				users: initData.users,
+				sites: initData.sites
 			})
 		})
 	};
@@ -56,14 +60,16 @@ class StatesField extends React.Component{
 
 		console.log('State changed to ' + JSON.stringify(newValue));
 
-		var fakeApi = STATES[newValue.value]();
-
+		var userName = newValue.value;
+		
 		this.setState({
 			selectValue: newValue,
 			fetching:true
 		});
 
-		fakeApi.then((result) => {
+		Api.getEntries(userName)
+		.then((result) => {
+			result = result.data;
 			this.setState({
 				entries: result,
 				fetching:false
@@ -76,8 +82,22 @@ class StatesField extends React.Component{
 	itemClicked = (e) => {
 		console.log(e.value)
 	};
+
+	// helper function to convert the data we got from server, to the data for the component 'Select'
+	convertApiData(apiData) {
+		return apiData.map((entry) => {
+			return {value: entry, label: entry};
+		});
+	};
+
 	render () {
 		var options = STATES[this.state.entriesType];
+
+		var usersData = this.convertApiData(this.state.users);
+		var userssitesDataData = this.convertApiData(this.state.sites);
+		
+		console.log(usersData);
+
 		return (
 
 			<div className="section">
@@ -86,10 +106,8 @@ class StatesField extends React.Component{
 					:
 					<div>
 						<h3 className="section-heading">{this.props.label}</h3>
-					
 						<CheckType checked={this.state.entriesType} switchEntryType={this.switchEntryType} fetching={this.state.fetching}/>
-						
-						<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={options} clearable={this.state.clearable} name="selected-state" disabled={this.state.fetching} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
+						<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={usersData} clearable={this.state.clearable} name="selected-state" disabled={this.state.fetching} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
 						<Results fetching={this.state.fetching} entries={this.state.entries}/>
 					</div>
 				}
