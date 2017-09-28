@@ -1,5 +1,5 @@
 import React from 'react';
-
+import moment from 'moment';
 import Entry from './Entry';
 
 const Results = (props) => (
@@ -18,7 +18,7 @@ const Results = (props) => (
             props.entries.map((entry, index) => (
               <Entry
                 key = {index}
-                time={entry.time}
+                time={moment(entry.time * 1000).fromNow()}
                 info={entry[props.entriesType === 'sites' ? "user_name" : 'site_name']}
                 referrer={entry.referrer}
               />
