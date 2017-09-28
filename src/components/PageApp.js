@@ -60,16 +60,18 @@ class StatesField extends React.Component{
 
 		console.log('State changed to ' + JSON.stringify(newValue));
 
-		var userName = newValue.value;
+		var name = newValue.value;
 		
 		this.setState({
 			selectValue: newValue,
 			fetching:true
 		});
 
-		Api.getEntries(userName)
+		Api.getEntries(this.state.entriesType, name)
 		.then((result) => {
 			result = result.data;
+			console.log('ido ');
+			console.log(result);
 			this.setState({
 				entries: result,
 				fetching:false
@@ -91,12 +93,8 @@ class StatesField extends React.Component{
 	};
 
 	render () {
-		var options = STATES[this.state.entriesType];
-
-		var usersData = this.convertApiData(this.state.users);
-		var userssitesDataData = this.convertApiData(this.state.sites);
 		
-		console.log(usersData);
+		var entriesDisplay = this.convertApiData(this.state[this.state.entriesType])
 
 		return (
 
@@ -107,7 +105,7 @@ class StatesField extends React.Component{
 					<div>
 						<h3 className="section-heading">{this.props.label}</h3>
 						<CheckType checked={this.state.entriesType} switchEntryType={this.switchEntryType} fetching={this.state.fetching}/>
-						<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={usersData} clearable={this.state.clearable} name="selected-state" disabled={this.state.fetching} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
+						<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={entriesDisplay} clearable={this.state.clearable} name="selected-state" disabled={this.state.fetching} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
 						<Results fetching={this.state.fetching} entries={this.state.entries}/>
 					</div>
 				}
