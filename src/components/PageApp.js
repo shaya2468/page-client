@@ -33,7 +33,11 @@ class StatesField extends React.Component{
 				users: initData.users,
 				sites: initData.sites
 			})
-			this.updateValue(userName)
+			//check if current user exists on server(maybe he has no entries, first time user)
+			if (initData.users.indexOf(userName) > -1){
+				this.updateValue(userName)
+			}
+			
 		})
 	};
 
