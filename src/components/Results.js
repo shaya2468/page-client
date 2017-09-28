@@ -15,21 +15,21 @@ const Results = (props) => (
         {
           !props.fetching &&
 
-            props.entries.map((entry, index) => (
-              <Entry
-                key = {index}
-                time={moment(entry.time * 1000).fromNow()}
-                info={entry[props.entriesType === 'sites' ? "user_name" : 'site_name']}
-                referrer={entry.referrer}
-              />
-            ))
+          props.entries.map((entry, index) => (
+            <Entry
+              key={index}
+              time={moment(entry.time * 1000).fromNow()}
+              info={entry[props.entriesType === 'sites' ? "user_name" : 'site_name']}
+              referrer={entry.referrer}
+            />
+          ))
         }
-        </tbody>
+      </tbody>
     </table>
     {
       props.fetching &&
 
-        <p className="fetching-data">Fetching data please wait...</p>
+      <p className="fetching-data">Fetching data please wait...</p>
     }
   </div>
 );
