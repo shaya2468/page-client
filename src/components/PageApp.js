@@ -67,8 +67,6 @@ class StatesField extends React.Component {
 		Api.getEntries(this.state.entriesType, name)
 			.then((result) => {
 				result = result.data;
-				console.log('ido ');
-				console.log(result);
 				this.setState({
 					entries: result,
 					fetching: false
@@ -81,6 +79,7 @@ class StatesField extends React.Component {
 	};
 	
 	itemClicked = (e) => {
+		// for now just log the value
 		console.log(e.value)
 	};
 
