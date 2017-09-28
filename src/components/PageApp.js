@@ -12,7 +12,6 @@ class StatesField extends React.Component{
 
 	state = {
 		entriesType: 'users',
-		userName: null,
 		fetching: false,
 		loadingInit: true,
 		searchable: this.props.searchable,
@@ -32,9 +31,9 @@ class StatesField extends React.Component{
 			this.setState({
 				loadingInit: false,
 				users: initData.users,
-				sites: initData.sites,
-				userName: userName
+				sites: initData.sites
 			})
+			this.updateValue(userName)
 		})
 	};
 
