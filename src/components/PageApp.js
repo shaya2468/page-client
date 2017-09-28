@@ -6,15 +6,13 @@ import Results from './Results';
 import CheckType from './CheckType';
 import Api from '../api/entriesApi';
 
-const STATES = require('../data/states');
-
 class StatesField extends React.Component{
 
 	state = {
 		entriesType: 'users',
 		fetching: false,
 		loadingInit: true,
-		searchable: this.props.searchable,
+		searchable: true,
 		selectValue: null,
 		clearable: true,
 		entries:[],
@@ -39,13 +37,6 @@ class StatesField extends React.Component{
 			}
 			
 		})
-	};
-
-	getDefaultProps = () => {
-		return {
-			label: ' ',
-			searchable: true,
-		};
 	};
 
 	switchEntryType = (e) => {
@@ -110,7 +101,7 @@ class StatesField extends React.Component{
 					<h3>Loading, please wait...</h3>
 					:
 					<div>
-						<h3 className="section-heading">{this.props.label}</h3>
+						<h3 className="section-heading"> </h3>
 						<CheckType checked={this.state.entriesType} switchEntryType={this.switchEntryType} fetching={this.state.fetching}/>
 						<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={entriesDisplay} clearable={this.state.clearable} name="selected-state" disabled={this.state.fetching} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
 						<Results entriesType = {this.state.entriesType} fetching={this.state.fetching} entries={this.state.entries}/>
