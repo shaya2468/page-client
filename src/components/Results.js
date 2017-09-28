@@ -8,7 +8,7 @@ const Results = (props) => (
       <tbody className="tbody-res">
         <tr>
           <th>Time</th>
-          <th>{props.mainTitle}</th>
+          <th>{props.entriesType === 'sites' ? "User" : 'Site'}</th>
           <th>Referrer</th>
         </tr>
 
@@ -19,7 +19,7 @@ const Results = (props) => (
               <Entry
                 key = {index}
                 time={entry.time}
-                info={entry.site_name}
+                info={entry[props.entriesType === 'sites' ? "user_name" : 'site_name']}
                 referrer={entry.referrer}
               />
             ))
