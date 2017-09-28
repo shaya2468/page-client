@@ -8,7 +8,7 @@ const Results = (props) => (
       <tbody className="tbody-res">
         <tr>
           <th>Time</th>
-          <th>Site</th>
+          <th>{props.mainTitle}</th>
           <th>Referrer</th>
         </tr>
 

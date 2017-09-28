@@ -95,6 +95,7 @@ class StatesField extends React.Component{
 	render () {
 		
 		var entriesDisplay = this.convertApiData(this.state[this.state.entriesType])
+		var mainTitle = this.state.entriesType === 'sites' ? "User" : 'Site';
 
 		return (
 
@@ -106,7 +107,7 @@ class StatesField extends React.Component{
 						<h3 className="section-heading">{this.props.label}</h3>
 						<CheckType checked={this.state.entriesType} switchEntryType={this.switchEntryType} fetching={this.state.fetching}/>
 						<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={entriesDisplay} clearable={this.state.clearable} name="selected-state" disabled={this.state.fetching} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
-						<Results fetching={this.state.fetching} entries={this.state.entries}/>
+						<Results mainTitle = {mainTitle} fetching={this.state.fetching} entries={this.state.entries}/>
 					</div>
 				}
 			</div>
