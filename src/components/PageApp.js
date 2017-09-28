@@ -41,6 +41,14 @@ var StatesField = createClass({
 		});
 	},
 	updateValue (newValue) {
+
+		if (!newValue){
+			this.setState({
+				selectValue: null
+			});
+			return;
+		}
+
 		console.log('State changed to ' + JSON.stringify(newValue));
 
 		var fakeApi = STATES[newValue.value]();
