@@ -1,37 +1,37 @@
 import React from 'react';
-import createClass from 'create-react-class';
-import PropTypes from 'prop-types';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 
 import Results from './Results';
 import CheckType from './CheckType';
+import Api from '../api/entriesApi';
 
 const STATES = require('../data/states');
 
-var StatesField = createClass({
-	displayName: 'StatesField',
-	propTypes: {
-		label: PropTypes.string,
-		searchable: PropTypes.bool,
-	},
-	getDefaultProps () {
+class StatesField extends React.Component{
+
+	state = {
+		entriesType: 'users',
+		fetching: false,
+		searchable: this.props.searchable,
+		selectValue: null,
+		clearable: true,
+		entries:[]
+	  };
+
+	constructor(props) {
+		super(props);
+		console.log('consturbtor dude')
+	  };
+
+	getDefaultProps = () => {
 		return {
 			label: ' ',
 			searchable: true,
 		};
-	},
-	getInitialState () {
-		return {
-			entriesType: 'users',
-			fetching: false,
-			searchable: this.props.searchable,
-			selectValue: null,
-			clearable: true,
-			entries:[]
-		};
-	},
-	switchEntryType (e) {
+	};
+
+	switchEntryType = (e) => {
 		var newType = e.target.value;
 		console.log('new type is ' + newType);
 		this.setState({
@@ -39,8 +39,8 @@ var StatesField = createClass({
 			selectValue: null,
 			entries: []
 		});
-	},
-	updateValue (newValue) {
+	};
+	updateValue = (newValue) => {
 
 		if (!newValue){
 			this.setState({
@@ -64,13 +64,13 @@ var StatesField = createClass({
 				fetching:false
 			});
 		})
-	},
-	focusStateSelect () {
+	};
+	focusStateSelect = () => {
 		this.refs.stateSelect.focus();
-	},
-	itemClicked (e) {
+	};
+	itemClicked = (e) => {
 		console.log(e.value)
-	},
+	};
 	render () {
 		var options = STATES[this.state.entriesType];
 		return (
@@ -85,7 +85,7 @@ var StatesField = createClass({
 			</div>
 		);
 	}
-});
+};
 
 
 module.exports = StatesField;

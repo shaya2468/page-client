@@ -1,5 +1,6 @@
 node_modules/
 public/dist/
+config/
 .env.test
 .env.development
 yarn.lock
