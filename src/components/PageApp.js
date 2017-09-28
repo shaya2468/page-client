@@ -12,6 +12,7 @@ class StatesField extends React.Component{
 
 	state = {
 		entriesType: 'users',
+		userName: null,
 		fetching: false,
 		loadingInit: true,
 		searchable: this.props.searchable,
@@ -23,13 +24,16 @@ class StatesField extends React.Component{
 	  };
 
 	componentDidMount = () => {
-		Api.init()
-		.then((initData) => {
-			initData = initData.data;
+
+		Promise.all([Api.init(), Api.getMyUserName()])
+		.then((result) => {
+			var initData = result[0].data;
+			var userName = result[1].data.ip;
 			this.setState({
 				loadingInit: false,
 				users: initData.users,
-				sites: initData.sites
+				sites: initData.sites,
+				userName: userName
 			})
 		})
 	};

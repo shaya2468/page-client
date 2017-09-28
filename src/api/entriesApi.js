@@ -2,6 +2,11 @@ var axios = require('axios')
 
 module.exports = {
 
+  // user name is defined as ip address
+  getMyUserName:function () {
+    var url = `https://freegeoip.net/json/`;
+    return axios.get(url);
+  },
   init:function () {
     var url = `http://localhost:3333/init`;
     return axios.get(url);
