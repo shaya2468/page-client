@@ -20,6 +20,9 @@ class StatesField extends React.Component {
 		sites: []
 	};
 
+	// When the page loads for the first time bring
+	// 1. the ip address of the user, which is identified as his user name
+	// 2. list of users and sites from the server
 	componentDidMount = () => {
 
 		Promise.all([Api.init(), Api.getMyUserName()])
@@ -99,7 +102,15 @@ class StatesField extends React.Component {
 					<div>
 						<h3 className="section-heading"> </h3>
 						<CheckType checked={this.state.entriesType} switchEntryType={this.switchEntryType} fetching={this.state.fetching} />
-						<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={entriesDisplay} clearable={this.state.clearable} name="selected-state" disabled={this.state.fetching} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
+						<Select  onValueClick={this.itemClicked} 
+								 autoFocus 
+								 options={entriesDisplay}
+								 clearable={this.state.clearable}
+								 name="selected-state" 
+								 disabled={this.state.fetching} 
+								 value={this.state.selectValue} 
+								 onChange={this.updateValue} 
+								 searchable={this.state.searchable} />
 						<Results entriesType={this.state.entriesType} fetching={this.state.fetching} entries={this.state.entries} />
 					</div>
 				}
