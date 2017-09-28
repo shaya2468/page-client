@@ -1,9 +1,9 @@
 var axios = require('axios')
 
 module.exports = {
-  
-  getUsers:function () {
-    var url = `http://localhost:3333/entries`;
+
+  init:function () {
+    var url = `http://localhost:3333/init`;
     return axios.get(url);
   }
 }

@@ -19,10 +19,12 @@ class StatesField extends React.Component{
 		entries:[]
 	  };
 
-	constructor(props) {
-		super(props);
-		console.log('consturbtor dude')
-	  };
+	componentDidMount = () => {
+		Api.init()
+		.then((users) => {
+			console.log(users.data);
+		})
+	};
 
 	getDefaultProps = () => {
 		return {
