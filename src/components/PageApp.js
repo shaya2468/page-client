@@ -6,7 +6,7 @@ import Results from './Results';
 import CheckType from './CheckType';
 import Api from '../api/entriesApi';
 
-class StatesField extends React.Component {
+class PageApp extends React.Component {
 
 	state = {
 		entriesType: 'users',
@@ -120,4 +120,4 @@ class StatesField extends React.Component {
 };
 
 
-module.exports = StatesField;
+module.exports = PageApp;
