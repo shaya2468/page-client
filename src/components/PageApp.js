@@ -51,7 +51,8 @@ class StatesField extends React.Component{
 
 		if (!newValue){
 			this.setState({
-				selectValue: null
+				selectValue: null,
+				entries: []
 			});
 			return;
 		}
