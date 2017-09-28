@@ -13,6 +13,7 @@ class StatesField extends React.Component{
 	state = {
 		entriesType: 'users',
 		fetching: false,
+		loadingInit: true,
 		searchable: this.props.searchable,
 		selectValue: null,
 		clearable: true,
@@ -23,6 +24,9 @@ class StatesField extends React.Component{
 		Api.init()
 		.then((users) => {
 			console.log(users.data);
+			this.setState({
+				loadingInit:false
+			})
 		})
 	};
 
@@ -35,7 +39,6 @@ class StatesField extends React.Component{
 
 	switchEntryType = (e) => {
 		var newType = e.target.value;
-		console.log('new type is ' + newType);
 		this.setState({
 			entriesType: newType,
 			selectValue: null,
@@ -76,14 +79,20 @@ class StatesField extends React.Component{
 	render () {
 		var options = STATES[this.state.entriesType];
 		return (
-			<div className="section">
-				<h3 className="section-heading">{this.props.label}</h3>
 
-				<CheckType checked={this.state.entriesType} switchEntryType={this.switchEntryType} fetching={this.state.fetching}/>
-				
-				<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={options} clearable={this.state.clearable} name="selected-state" disabled={this.state.fetching} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
-				<Results fetching={this.state.fetching} entries={this.state.entries}/>
-				
+			<div className="section">
+				{this.state.loadingInit ? 
+					<h3>Loading, please wait...</h3>
+					:
+					<div>
+						<h3 className="section-heading">{this.props.label}</h3>
+					
+						<CheckType checked={this.state.entriesType} switchEntryType={this.switchEntryType} fetching={this.state.fetching}/>
+						
+						<Select onValueClick={this.itemClicked} ref="stateSelect" autoFocus options={options} clearable={this.state.clearable} name="selected-state" disabled={this.state.fetching} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
+						<Results fetching={this.state.fetching} entries={this.state.entries}/>
+					</div>
+				}
 			</div>
 		);
 	}
